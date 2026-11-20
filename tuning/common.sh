@@ -17,7 +17,7 @@ TSTS_EXE="$ROOT/tabusearch/tsts"
 # Time limit per run, in seconds, depending only on the number of items n of the instance:
 #   tmax = n * TIME_FACTOR
 # Both algorithms get exactly this limit. Change it here and nowhere else.
-TIME_FACTOR=${TIME_FACTOR:-0.24} # because we want 120 s for n=500
+TIME_FACTOR=${TIME_FACTOR:-0.02}
 
 tmax_for() {
 	local n
