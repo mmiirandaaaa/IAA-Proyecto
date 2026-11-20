@@ -7,15 +7,17 @@ class individuo{
 public:
 	// Atributos
 	vector<int> x;
-	// int fitness;
+	int z;
 	double K_f, D_f;
 
 	// Métodos
 	individuo();
-	// individuo(vector<int> &v);
+	individuo(vector<int> &v);
 	void print();
-	// void updateFitness();
+	void printFeasibility();
 	void updateFeasibility();
+	vector<int> cruce(individuo &otro);
+	void mutar(vector<int> &v);
 
 	// int getFitness();
 	double getKFeasibility();

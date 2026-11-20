@@ -1,0 +1,19 @@
+#!/bin/bash
+# irace target runner for TSTS (Lai, Hao & Yue, 2019), port in Code/TSTS_port.cpp.
+# irace calls: target-runner <config_id> <instance_id> <seed> <instance> <parameters...>
+
+source "$(dirname "$0")/../common.sh"
+
+CONFIG_ID=$1
+INSTANCE_ID=$2
+SEED=$3
+INSTANCE=$4
+shift 4 || exit 1
+
+split_instance "$INSTANCE"
+TMAX=$(tmax_for "$PROJ/$FILE")
+
+OUT=$("$TSTS_EXE" --q "$Q" --coefs "$COEFS" --instancia "$INST" --seed "$SEED" \
+	--tmax "$TMAX" "$@" < "$PROJ/$FILE" 2>&1)
+
+cost_from_output "$OUT"

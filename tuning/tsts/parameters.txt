@@ -1,0 +1,5 @@
+# TSTS. name, command-line switch, type, range.
+# alpha: stage 1 stops after 2*alpha non-improving iterations (paper value 10^4).
+# lambda: penalty weight of the constraint violation. L (tabu table size) is memory, not tuned.
+alpha    "--alpha "   i,log  (500, 50000)
+lambda   "--lambda "  i,log  (1, 1000)

@@ -1,0 +1,14 @@
+## irace scenario for TSTS. Run from this folder:  irace --scenario scenario.txt
+## Everything except parameterFile, configurationsFile and targetRunner must stay identical
+## to ../ga/scenario.txt, otherwise the two tunings do not get the same resources.
+parameterFile      = "parameters.txt"
+configurationsFile = "default.txt"
+targetRunner       = "./target-runner"
+trainInstancesDir  = ""
+trainInstancesFile = "../instances-train.txt"
+maxExperiments     = 1000
+parallel           = 4
+seed               = 2026
+digits             = 4
+execDir            = "./"
+logFile            = "./irace.Rdata"

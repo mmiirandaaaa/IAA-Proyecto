@@ -1,0 +1,2 @@
+alpha  lambda
+10000  100

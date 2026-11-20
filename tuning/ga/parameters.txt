@@ -1,0 +1,12 @@
+# Island GA. name, command-line switch, type, range.
+# mu starts at 1 so the tuned algorithm is still an island model (mu = 0 means no migration).
+# s >= 20 keeps elite and mu (at most 10) below the island size.
+s        "--s "       i      (20, 300)
+pc       "--pc "      r      (0.5, 1.0)
+pm       "--pm "      r,log  (0.0005, 0.05)
+elite    "--elite "   i      (1, 10)
+k        "--k "       i      (1, 50)
+mu       "--mu "      i      (1, 10)
+t        "--t "       r      (0.1, 0.9)
+gamma    "--gamma "   r,log  (0.005, 0.5)
+gr       "--gr "      i      (10, 300)

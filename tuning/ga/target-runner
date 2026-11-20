@@ -1,0 +1,20 @@
+#!/bin/bash
+# irace target runner for the island GA.
+# irace calls: target-runner <config_id> <instance_id> <seed> <instance> <parameters...>
+# The GA stops only by time (--gmax is set out of reach), like TSTS.
+
+source "$(dirname "$0")/../common.sh"
+
+CONFIG_ID=$1
+INSTANCE_ID=$2
+SEED=$3
+INSTANCE=$4
+shift 4 || exit 1
+
+split_instance "$INSTANCE"
+TMAX=$(tmax_for "$PROJ/$FILE")
+
+OUT=$("$GA_EXE" --q "$Q" --coefs "$COEFS" --instancia "$INST" --seed "$SEED" \
+	--tmax "$TMAX" --gmax 2000000000 "$@" < "$PROJ/$FILE" 2>&1)
+
+cost_from_output "$OUT"
