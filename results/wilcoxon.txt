@@ -1,0 +1,3 @@
+Wilcoxon signed-rank, 36 problems, per-problem mean gap (infeasible = 100 %), mig vs nomig: W = 298.0, p = 0.592
+mig better on 19, nomig better on 17, ties 0
+MWU significant after Holm: mig 0, nomig 0, none 36
