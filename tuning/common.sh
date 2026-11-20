@@ -1,10 +1,18 @@
 # Shared by both target runners. Everything that makes the comparison fair lives here,
 # so the instance format, the time limit and the cost are literally the same for both.
+#
+# Expected layout (all paths below are derived from where this file is, so it works from any cwd):
+#   ProyectoIAA/
+#     mdmkp/mdmkp            island GA binary      (run make inside mdmkp/)
+#     tabusearch/tsts        TSTS binary           (compile command at the top of TSTS.cpp)
+#     train/  test/          instance files        (split_instances.py)
+#     tuning/                this folder
 
-HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJ="$HERE"          # folder that contains train/ and test/ (from split_instances.py)
-GA_EXE="$PROJ/mdmkp"                 # island GA binary (make in mdmkp)
-TSTS_EXE="$HERE/tabusearch"        # TSTS binary (compile command at the top of TSTS.cpp)
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"   # .../ProyectoIAA/tuning
+ROOT="$(cd "$HERE/.." && pwd)"                         # .../ProyectoIAA
+PROJ="$ROOT"                                           # instance paths are relative to this folder
+GA_EXE="$ROOT/mdmkp/mdmkp"
+TSTS_EXE="$ROOT/tabusearch/tsts"
 
 # Time limit per run, in seconds, depending only on the number of items n of the instance:
 #   tmax = n * TIME_FACTOR
@@ -15,6 +23,16 @@ tmax_for() {
 	local n
 	n=$(sed -n 2p "$1" | awk '{print $1}')
 	awk -v n="$n" -v f="$TIME_FACTOR" 'BEGIN { print n * f }'
+}
+
+# Stops with a clear message if a binary is missing or not executable.
+check_exe() {
+	if [ ! -x "$1" ]; then
+		echo "target-runner: executable not found: $1" >&2
+		echo "  GA:   cd $ROOT/mdmkp && make" >&2
+		echo "  TSTS: cd $ROOT/tabusearch && g++ -O2 -Wall -o tsts TSTS.cpp ../mdmkp/reader.cpp ../mdmkp/global.cpp -I../mdmkp" >&2
+		exit 1
+	fi
 }
 
 # irace minimizes the last number printed by the target runner.

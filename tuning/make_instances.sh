@@ -3,12 +3,17 @@
 #   <file relative to ProyectoIAA>,<instancia>,<q>,<coefs>
 # Every configuration of every file gives 6 instances (q = 1,2,3 x mixed/positive).
 #
-# Usage (from this folder):
+# Usage (from any folder):
 #   ./make_instances.sh train > instances-train.txt
 #   ./make_instances.sh test  > instances-test.txt
 
 source "$(dirname "$0")/common.sh"
 SPLIT=${1:-train}
+
+if [ ! -d "$PROJ/$SPLIT" ]; then
+	echo "make_instances: folder $PROJ/$SPLIT not found" >&2
+	exit 1
+fi
 
 for f in "$PROJ/$SPLIT"/mdmkp_ct*.txt; do
 	T=$(head -1 "$f" | awk '{print $1}')

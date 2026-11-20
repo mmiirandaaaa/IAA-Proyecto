@@ -11,6 +11,7 @@ SEED=$3
 INSTANCE=$4
 shift 4 || exit 1
 
+check_exe "$GA_EXE"
 split_instance "$INSTANCE"
 TMAX=$(tmax_for "$PROJ/$FILE")
 
