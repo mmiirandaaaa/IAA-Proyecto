@@ -1,0 +1,3 @@
+nohup: ignoring input
+run_final: 360 runs to do (ga, TIME_FACTOR=0.02, 4 in parallel), output results/ga-final.csv
+run_final: done, 360 rows in results/ga-final.csv
