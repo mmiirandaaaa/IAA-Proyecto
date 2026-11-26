@@ -9,6 +9,5 @@ trainInstancesFile = "../instances-train.txt"
 maxExperiments     = 1000
 parallel           = 4
 seed               = 2026
-digits             = 4
 execDir            = "./"
 logFile            = "./irace.Rdata"
